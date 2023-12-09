@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Test button -->
+    <record id="new_sale_inherit" model="ir.ui.view">
+        <field name="name">new sale inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button string="RFQ" name="open_purchase_order_lines" type="object"/>
+            </xpath>
+            <xpath expr="//button[@name='action_preview_sale_order']" position="before">
+
+
+
+<!--                 <button name="smart_button" string="test" type="object" class="oe_stat_button" icon="fa-book" >-->
+<!--                    </button>-->
+
+
+                  <button class="oe_stat_button" type="object" name="smart_button"
+                        icon="fa-book" string="Test">
+<!--                      -->
+                        <field string="Test" name="vehicle_count" widget="statinfo"/>
+
+                    </button>
+
+
+            </xpath>
+
+
+
+
+
+        </field>
+    </record>
+
+
+    <record id="wizard_form" model="ir.ui.view">
+        <field name="name">wizard.form</field>
+        <field name="model">purchase.wizards</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="vendorss"/>
+                    </group>
+                    <field name="test_test_ids">
+                        <tree editable="bottom" delete="0">
+
+
+                            <field name="product_i"/>
+                            <field name="description"/>
+                            <field name="quantity"/>
+                            <field name="delivered"/>
+                            <field name="invoiced"/>
+                            <field name="unit_price"/>
+                            <field name="taxes"/>
+                            <field name="subtotal"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Save" type="object" name="to_order" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_purchase_wizard" model="ir.actions.act_window">
+        <field name="name">View Purchase Wizard</field>
+        <field name="res_model">purchase.wizards</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+
+
+</odoo>
